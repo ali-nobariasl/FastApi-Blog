@@ -1,4 +1,4 @@
-from pydandtic import BaseModel
+from pydantic import BaseModel
 from datetime import datetime 
 
 
