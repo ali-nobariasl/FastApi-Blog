@@ -16,3 +16,8 @@ def create(db: Session, request:PostBase):
     db.commit()
     db.refresh(user)
     return user
+
+
+def get_all(db:Session):
+    users = db.query(DbPost).all()
+    return users
