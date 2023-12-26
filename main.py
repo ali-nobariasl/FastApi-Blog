@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from fastapi.staticfiles import StaticFiles
 from database import model
 from database.database import engine
 from routers import post
@@ -16,3 +16,4 @@ def get_home():
     
     
 model.Base.metadata.create_all(engine)
+app.mount('/images',StaticFiles(directory='images'), name='images')
