@@ -16,6 +16,9 @@ router = APIRouter(prefix='/post', tags=['post'])
 def create(request:PostBase, db:Session=Depends(database.get_db)):
     return db_post.create(db, request)
 
+@router.put('/update/{id}')
+def update(id:int,request:PostBase, db: Session=Depends(database.get_db)):
+    return db_post.update(id ,request,db  )
 
 @router.get('/all')
 def get_all_posts( db:Session=Depends(database.get_db)):

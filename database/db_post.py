@@ -19,6 +19,21 @@ def create(db: Session, request:PostBase):
     return user
 
 
+def update(id:int,request:PostBase, db: Session):
+    user = db.query(DbPost).filter(DbPost.id == id).first()
+    if user:
+        user.image_url = request.image_url
+        user.title = request.title
+        user.content = request.content
+        user.creator = request.creator
+        user.timestamp = datetime.datetime.now()
+        
+        db.commit()
+        return user
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'the user with {id} is not found')
+
 def get_all(db:Session):
     users = db.query(DbPost).all()
     return users
